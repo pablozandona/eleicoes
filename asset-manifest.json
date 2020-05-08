@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/eleicoes/static/css/main.b3969992.chunk.css",
-    "main.js": "/eleicoes/static/js/main.0d0cf9c7.chunk.js",
-    "main.js.map": "/eleicoes/static/js/main.0d0cf9c7.chunk.js.map",
-    "runtime-main.js": "/eleicoes/static/js/runtime-main.022b9dab.js",
-    "runtime-main.js.map": "/eleicoes/static/js/runtime-main.022b9dab.js.map",
-    "static/css/2.cac36267.chunk.css": "/eleicoes/static/css/2.cac36267.chunk.css",
-    "static/js/2.0adc2d32.chunk.js": "/eleicoes/static/js/2.0adc2d32.chunk.js",
-    "static/js/2.0adc2d32.chunk.js.map": "/eleicoes/static/js/2.0adc2d32.chunk.js.map",
-    "index.html": "/eleicoes/index.html",
-    "precache-manifest.a7226727dd2328ac13a0d2e473b7fdbe.js": "/eleicoes/precache-manifest.a7226727dd2328ac13a0d2e473b7fdbe.js",
-    "service-worker.js": "/eleicoes/service-worker.js",
-    "static/css/2.cac36267.chunk.css.map": "/eleicoes/static/css/2.cac36267.chunk.css.map",
-    "static/css/main.b3969992.chunk.css.map": "/eleicoes/static/css/main.b3969992.chunk.css.map",
-    "static/js/2.0adc2d32.chunk.js.LICENSE.txt": "/eleicoes/static/js/2.0adc2d32.chunk.js.LICENSE.txt"
+    "main.css": "/eleicoesweb/static/css/main.b3969992.chunk.css",
+    "main.js": "/eleicoesweb/static/js/main.0d0cf9c7.chunk.js",
+    "main.js.map": "/eleicoesweb/static/js/main.0d0cf9c7.chunk.js.map",
+    "runtime-main.js": "/eleicoesweb/static/js/runtime-main.5a37aa3d.js",
+    "runtime-main.js.map": "/eleicoesweb/static/js/runtime-main.5a37aa3d.js.map",
+    "static/css/2.cac36267.chunk.css": "/eleicoesweb/static/css/2.cac36267.chunk.css",
+    "static/js/2.96a6aa0d.chunk.js": "/eleicoesweb/static/js/2.96a6aa0d.chunk.js",
+    "static/js/2.96a6aa0d.chunk.js.map": "/eleicoesweb/static/js/2.96a6aa0d.chunk.js.map",
+    "index.html": "/eleicoesweb/index.html",
+    "precache-manifest.1b33ce248ed3e90751450d52fe481e7a.js": "/eleicoesweb/precache-manifest.1b33ce248ed3e90751450d52fe481e7a.js",
+    "service-worker.js": "/eleicoesweb/service-worker.js",
+    "static/css/2.cac36267.chunk.css.map": "/eleicoesweb/static/css/2.cac36267.chunk.css.map",
+    "static/css/main.b3969992.chunk.css.map": "/eleicoesweb/static/css/main.b3969992.chunk.css.map",
+    "static/js/2.96a6aa0d.chunk.js.LICENSE.txt": "/eleicoesweb/static/js/2.96a6aa0d.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.022b9dab.js",
+    "static/js/runtime-main.5a37aa3d.js",
     "static/css/2.cac36267.chunk.css",
-    "static/js/2.0adc2d32.chunk.js",
+    "static/js/2.96a6aa0d.chunk.js",
     "static/css/main.b3969992.chunk.css",
     "static/js/main.0d0cf9c7.chunk.js"
   ]
