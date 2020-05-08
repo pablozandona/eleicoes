@@ -38,9 +38,9 @@ const App: React.FC = () => {
                         }}
                     >
                         <div className="logo"/>
-                        <Menu theme="dark" mode="inline" defaultSelectedKeys={['votar']}>
+                        <Menu theme="dark" mode="inline" >
                             <Menu.Item key="votar">
-                                <Link to="/votar">VOTAR</Link>
+                                <Link to="/">VOTAR</Link>
                             </Menu.Item>
                             <SubMenu key="eleicoes" title="Cadastros">
                                 <Menu.Item key="eleicao"><Link to="/eleicoes">Eleições</Link></Menu.Item>
@@ -53,9 +53,8 @@ const App: React.FC = () => {
                         </Menu>
                     </Sider>
                     <Layout className="site-layout" style={{marginLeft: 200}}>
-                        <Redirect from="/" to="votar" />
                         <Switch>
-                            <Route path="/votar">
+                            <Route path="/" exact={true} >
                                 <IniciarVotacao/>
                             </Route>
                             <Route path="/selecionarEleicao/:cpf" children={<SelecionarEleicao/>}/>
