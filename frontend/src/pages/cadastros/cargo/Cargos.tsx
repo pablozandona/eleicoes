@@ -28,7 +28,7 @@ const Cargos: React.FC = () => {
     ];
 
     const getCargos = () => {
-        axios.get('/cargos')
+        axios.get('/api/cargos')
             .then(function ({data}) {
                 console.log(data);
                 setCargos(data);
@@ -45,7 +45,7 @@ const Cargos: React.FC = () => {
 
     const remover = (id: string) => {
         message.loading({content: 'Aguarde...', key: 'msg'});
-        axios.delete('/cargos/' + id)
+        axios.delete('/api/cargos/' + id)
             .then(function ({data}) {
                 message.success({content: 'Removido!', key: 'msg', duration: 2});
                 getCargos();

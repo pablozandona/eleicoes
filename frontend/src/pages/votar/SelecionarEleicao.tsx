@@ -2,32 +2,22 @@ import React, {useEffect, useState} from 'react';
 import moment from 'moment';
 import axios from 'axios';
 import {useHistory, useParams} from "react-router-dom";
-import {LoadingOutlined, CheckOutlined} from '@ant-design/icons';
+import {CheckOutlined} from '@ant-design/icons';
 import {
     Avatar,
     Button,
     Col,
-    DatePicker,
     Form,
-    Input,
-    InputNumber,
     message,
     Result,
     Row,
-    Select, Space,
+    Space,
     Tag,
-    Upload
 } from 'antd';
 import {ContentPage} from "../../shared/components/ContentPage/ContentPage";
 import {Loading} from "../../shared/components/Loading/Loading";
-import MaskedInput from 'antd-mask-input'
-import {List, Card, Radio, Typography} from 'antd';
-const { Text,Title } = Typography;
-
-const formItemLayout = {
-    labelCol: {span: 4},
-    wrapperCol: {span: 6},
-};
+import {List, Card, Typography} from 'antd';
+const { Text } = Typography;
 
 const SelecionarEleicao: React.FC = () => {
 
@@ -43,7 +33,7 @@ const SelecionarEleicao: React.FC = () => {
     const {cpf} = useParams();
 
     const getEleicoes = () => {
-        axios.get('/eleicoes/disponiveis/' + cpf)
+        axios.get('/api/eleicoes/disponiveis/' + cpf)
             .then(function ({data}) {
                 console.log(data)
                 setEleicoes(data);
@@ -77,7 +67,7 @@ const SelecionarEleicao: React.FC = () => {
 
     const finalizarVotacao = () => {
         message.loading({content: 'Aguarde...', key: 'msg'});
-        axios.post('/eleicoes/votar', {
+        axios.post('/api/eleicoes/votar', {
             cpf,
             eleicaoId: eleicaoSelecionada.eleicao.id,
             votados: candidatoSelecionado,
@@ -134,7 +124,7 @@ const SelecionarEleicao: React.FC = () => {
                                                         <Row justify="space-between" align="middle">
                                                             <Col>
                                                                 <Avatar size={64}
-                                                                        src={"/candidatos/foto/" + candidato.foto.id}/>
+                                                                        src={"/api/candidatos/foto/" + candidato.foto.id}/>
                                                                 <Text style={{marginLeft: 20}}>{candidato.nome}</Text>
                                                             </Col>
                                                             <Col>
@@ -157,7 +147,7 @@ const SelecionarEleicao: React.FC = () => {
                                 </Space>
                                 :
                                 <List
-                                    grid={{gutter: 16, column: 3}}
+                                    grid={{gutter: 16, column: 1}}
                                     dataSource={eleicoes}
                                     renderItem={e => (
                                         <List.Item>

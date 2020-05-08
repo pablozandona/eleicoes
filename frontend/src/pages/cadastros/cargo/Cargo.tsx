@@ -22,7 +22,7 @@ const Cargo: React.FC = () => {
     const novo = id === 'novo';
 
     const getCargo = (id: string) => {
-        axios.get('/cargos/' + id)
+        axios.get('/api/cargos/' + id)
             .then(function ({data}) {
                 form.setFieldsValue({
                     nome: data.nome,
@@ -46,7 +46,7 @@ const Cargo: React.FC = () => {
 
     const onSubmit = () => {
         if (novo) {
-            axios.post('/cargos/criar', {
+            axios.post('/api/cargos/criar', {
                 nome: form.getFieldValue('nome'),
             })
                 .then(function ({data}) {
@@ -59,7 +59,7 @@ const Cargo: React.FC = () => {
                 });
         } else {
             message.loading({content: 'Aguarde...', key: 'msg'});
-            axios.put('/cargos/editar', {
+            axios.put('/api/cargos/editar', {
                 id,
                 nome: form.getFieldValue('nome'),
             })

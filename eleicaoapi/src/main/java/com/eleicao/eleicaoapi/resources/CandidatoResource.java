@@ -13,12 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/candidatos")
+@RequestMapping(value = "/api/candidatos")
 public class CandidatoResource {
 
     @Autowired

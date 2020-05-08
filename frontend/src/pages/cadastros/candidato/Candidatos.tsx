@@ -17,7 +17,7 @@ const Candidatos: React.FC = () => {
             title: 'Foto',
             dataIndex: 'foto',
             key: 'foto',
-            render: (text: any, item: any) =>  <Avatar size={64} icon={<UserOutlined />} src={"/candidatos/foto/" + item.foto.id}/>,
+            render: (text: any, item: any) =>  <Avatar size={64} icon={<UserOutlined />} src={"/api/candidatos/foto/" + item.foto.id}/>,
         },
         {
             title: 'Nome',
@@ -40,7 +40,7 @@ const Candidatos: React.FC = () => {
     ];
 
     const getCandidatos = () => {
-        axios.get('/candidatos')
+        axios.get('/api/candidatos')
             .then(function ({data}) {
                 console.log(data);
                 setCandidatos(data);
@@ -57,7 +57,7 @@ const Candidatos: React.FC = () => {
 
     const remover = (id: string) => {
         message.loading({content: 'Aguarde...', key: 'msg'});
-        axios.delete('/candidatos/' + id)
+        axios.delete('/api/candidatos/' + id)
             .then(function ({data}) {
                 message.success({content: 'Removido!', key: 'msg', duration: 2});
                 getCandidatos();

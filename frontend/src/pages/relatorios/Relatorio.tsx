@@ -11,16 +11,18 @@ const Relatorio: React.FC = () => {
     const [votacao, setVotacao] = useState<any[]>([]);
     const [situacao, setSituacao] = useState<string>('');
     const [qtdEleitores, setQtdEleitores] = useState<number>(0);
-    const history = useHistory();
+    const [nome, setNome] = useState<string>('');
+
     const [loading, setLoading] = useState<boolean>(true);
     const {id} = useParams();
 
     const getRelatorio = () => {
-        axios.get(`/eleicoes/${id}/relatorio`)
+        axios.get(`/api/eleicoes/${id}/relatorio`)
             .then(function ({data}) {
                 console.log(data);
                 setQtdEleitores(data.quantidadeEleitores);
                 setSituacao(data.situacao);
+                setNome(data.nomeEleicao);
                 agruparPeloCargo(data.votacao);
                 setLoading(false);
             })
@@ -71,7 +73,7 @@ const Relatorio: React.FC = () => {
     return (
         <>
             {loading ? <Loading/> :
-                <ContentPage title={'Eleições'}>
+                <ContentPage title={nome}>
                     <Row gutter={16}>
                         <Col>
                             <Statistic title="Quatidade de eleitores" value={qtdEleitores} style={{ backgroundColor: 'white', padding: 20, borderRadius: 10 }}/>

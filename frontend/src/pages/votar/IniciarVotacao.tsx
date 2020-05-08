@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import moment from 'moment';
 import axios from 'axios';
 import {useHistory, useParams} from "react-router-dom";
-import {LoadingOutlined, PlusOutlined} from '@ant-design/icons';
-import {Button, DatePicker, Form, Input, InputNumber, message, Result, Select, Upload} from 'antd';
+import {Button, Empty, Form, Input, message} from 'antd';
 import {ContentPage} from "../../shared/components/ContentPage/ContentPage";
 import MaskedInput from 'antd-mask-input'
+import {Loading} from "../../shared/components/Loading/Loading";
 
 
 const formItemLayout = {
@@ -16,12 +15,32 @@ const formItemLayout = {
 const IniciarVotacao: React.FC = () => {
 
     const [form] = Form.useForm();
-
+    const [loading, setLoading] = useState<boolean>(true);
+    const [empty, setEmpty] = useState<boolean>(true);
     const history = useHistory();
+
+    const existeEleicoes = () => {
+        axios.get('/api/eleicoes/disponiveis/' + 'asd')
+            .then(function ({data}) {
+                if (!data.length) {
+                    setEmpty(true);
+                } else {
+                    setEmpty(false);
+                }
+                setLoading(false);
+            })
+            .catch(function (error) {
+                setLoading(false);
+            });
+    }
+
+    useEffect(() => {
+        existeEleicoes();
+    }, []);
 
     const onSubmit = () => {
         message.loading({content: 'Aguarde...', key: 'msg'});
-        axios.post('/eleitores/criar', {
+        axios.post('/api/eleitores/criar', {
             cpf: form.getFieldValue('cpf'),
             nome: form.getFieldValue('nome'),
         })
@@ -32,41 +51,53 @@ const IniciarVotacao: React.FC = () => {
                 message.destroy();
             })
             .catch(function (error) {
-                message.error({content: 'Falha ao alterar!', key: 'msg', duration: 2});
+                message.error({content: 'Falha!', key: 'msg', duration: 2});
             });
     }
 
     return (
         <>
+            {loading ? <Loading/> :
             <ContentPage title={''}>
-                <div style={{ fontSize: 20, textAlign: 'center', color: "gray", padding: 50 }}>Bem-vindo, entre com os dados para iniciar a votação: </div>
-                <Form form={form} {...formItemLayout} onFinish={onSubmit}>
-                    <Form.Item name='nome' label="Nome"
-                               rules={[{required: true, message: 'Campo obrigatório!'}]}>
-                        <Input/>
-                    </Form.Item>
-                    <Form.Item name='cpf' label="CPF"
-                               trigger={'onBlur'}
-                               validateTrigger={'onBlur'}
-                               rules={[{required: true, message: 'Campo obrigatório!'},
-                                   () => ({
-                                       validator(rule, value) {
-                                           if (value && value.replace(/\D/g, '').length !== 11) {
-                                               return Promise.reject('CPF inválido!');
-                                           }
-                                           return Promise.resolve();
-                                       },
-                                   }),
-                               ]}>
-                        <MaskedInput mask="111.111.111-11"/>
-                    </Form.Item>
-                    <Form.Item wrapperCol={{offset: 10, span: 16}}>
-                        <Button type="primary" htmlType="submit" size={"large"}>
-                            Iniciar votação
-                        </Button>
-                    </Form.Item>
-                </Form>
+                {empty ? <>
+                        <div style={{fontSize: 20, textAlign: 'center', color: "gray", padding: 50}}>
+                            Bem-vindo, ainda não há eleições disponíveis para votação</div>
+                        <Empty description="" imageStyle={{ height: 300 }}/>
+                    </>
+                    :
+                    <>
+                        <div style={{fontSize: 20, textAlign: 'center', color: "gray", padding: 50}}>Bem-vindo, entre
+                            com seus dados para iniciar a votação:
+                        </div>
+                        <Form form={form} {...formItemLayout} onFinish={onSubmit}>
+                            <Form.Item name='nome' label="Nome"
+                                       rules={[{required: true, message: 'Campo obrigatório!'}]}>
+                                <Input/>
+                            </Form.Item>
+                            <Form.Item name='cpf' label="CPF"
+                                       trigger={'onBlur'}
+                                       validateTrigger={'onBlur'}
+                                       rules={[{required: true, message: 'Campo obrigatório!'},
+                                           () => ({
+                                               validator(rule, value) {
+                                                   if (value && value.replace(/\D/g, '').length !== 11) {
+                                                       return Promise.reject('CPF inválido!');
+                                                   }
+                                                   return Promise.resolve();
+                                               },
+                                           }),
+                                       ]}>
+                                <MaskedInput mask="111.111.111-11"/>
+                            </Form.Item>
+                            <Form.Item wrapperCol={{offset: 10, span: 16}}>
+                                <Button type="primary" htmlType="submit" size={"large"}>
+                                    Iniciar votação
+                                </Button>
+                            </Form.Item>
+                        </Form>
+                    </>}
             </ContentPage>
+            }
         </>
     );
 }

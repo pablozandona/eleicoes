@@ -28,7 +28,7 @@ const Candidato: React.FC = () => {
     const novo = id === 'novo';
 
     const getCandidato = (id: string) => {
-        axios.get('/candidatos/' + id)
+        axios.get('/api/candidatos/' + id)
             .then(function ({data}) {
                 form.setFieldsValue({
                     nome: data.nome,
@@ -46,7 +46,7 @@ const Candidato: React.FC = () => {
     }
 
     const getCargos = () => {
-        axios.get('/cargos')
+        axios.get('/api/cargos')
             .then(function ({data}) {
                 setCargos(data);
             })
@@ -66,7 +66,7 @@ const Candidato: React.FC = () => {
 
     const onSubmit = () => {
         if (novo) {
-            axios.post('/candidatos/criar', {
+            axios.post('/api/candidatos/criar', {
                 nome: form.getFieldValue('nome'),
                 cargo: {
                     id: form.getFieldValue('cargo')
@@ -85,7 +85,7 @@ const Candidato: React.FC = () => {
                 });
         } else {
             message.loading({content: 'Aguarde...', key: 'msg'});
-            axios.put('/candidatos/editar', {
+            axios.put('/api/candidatos/editar', {
                 id,
                 nome: form.getFieldValue('nome'),
                 cargo: {
@@ -190,11 +190,11 @@ const Candidato: React.FC = () => {
                                     listType="picture-card"
                                     className="avatar-uploader"
                                     showUploadList={false}
-                                    action="/candidatos/salvarFoto"
+                                    action="/api/candidatos/salvarFoto"
                                     beforeUpload={beforeUpload}
                                     onChange={handleChange}
                                 >
-                                    {fotoId ? <img src={'/candidatos/foto/' + fotoId} alt="foto"
+                                    {fotoId ? <img src={'/api/candidatos/foto/' + fotoId} alt="foto"
                                                    style={{width: '100%'}}/> : uploadButton}
                                 </Upload>
                             </Form.Item>

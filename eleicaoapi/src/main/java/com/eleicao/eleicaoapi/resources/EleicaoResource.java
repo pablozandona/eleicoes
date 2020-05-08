@@ -13,15 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.Transient;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/eleicoes")
+@RequestMapping(value = "/api/eleicoes")
 public class EleicaoResource {
 
     @Autowired
@@ -79,6 +75,7 @@ public class EleicaoResource {
 
         relatorio.setQuantidadeEleitores(quantidadeEleitores);
         relatorio.setSituacao(situacao);
+        relatorio.setNomeEleicao(eleicao.getNome());
 
         return relatorio;
     }

@@ -24,7 +24,7 @@ const Eleicao: React.FC = (props) => {
     const novo = id === 'novo';
 
     const getEleicao = (id: string) => {
-        axios.get('/eleicoes/' + id)
+        axios.get('/api/eleicoes/' + id)
             .then(function ({data}) {
                 form.setFieldsValue({
                     nome: data.nome,
@@ -42,7 +42,7 @@ const Eleicao: React.FC = (props) => {
     }
 
     const getCargos = () => {
-        axios.get('/cargos')
+        axios.get('/api/cargos')
             .then(function ({data}) {
                 setCargos(data);
             })
@@ -72,7 +72,7 @@ const Eleicao: React.FC = (props) => {
         })
 
         if (novo) {
-            axios.post('/eleicoes/criar', {
+            axios.post('/api/eleicoes/criar', {
                 nome: form.getFieldValue('nome'),
                 dataInicio: form.getFieldValue('dataInicio'),
                 dataFim: form.getFieldValue('dataFim'),
@@ -88,7 +88,7 @@ const Eleicao: React.FC = (props) => {
                 });
         } else {
             message.loading({content: 'Aguarde...', key: 'msg'});
-            axios.put('/eleicoes/editar', {
+            axios.put('/api/eleicoes/editar', {
                 id,
                 nome: form.getFieldValue('nome'),
                 dataInicio: form.getFieldValue('dataInicio'),

@@ -44,7 +44,7 @@ const Relatorios: React.FC = () => {
     ];
 
     const getEleicoes = () => {
-        axios.get('/eleicoes')
+        axios.get('/api/eleicoes')
             .then(function ({data}) {
                 console.log(data);
                 setEleicoes(data);
@@ -62,7 +62,7 @@ const Relatorios: React.FC = () => {
 
     const remover = (id: string) => {
         message.loading({content: 'Aguarde...', key: 'msg'});
-        axios.delete('/eleicoes/' + id)
+        axios.delete('/api/eleicoes/' + id)
             .then(function ({data}) {
                 message.success({content: 'Removido!', key: 'msg', duration: 2});
                 getEleicoes();
@@ -99,7 +99,7 @@ const Relatorios: React.FC = () => {
     return (
         <>
             {loading ? <Loading/> :
-                <ContentPage title={'Eleições'}>
+                <ContentPage title={'Relatórios'}>
                     {eleicoes.length ?
                         <Table columns={configuracaoColunas} dataSource={eleicoes}/>
                         :

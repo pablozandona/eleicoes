@@ -41,7 +41,7 @@ const Eleicoes: React.FC = () => {
     ];
 
     const getEleicoes = () => {
-        axios.get('/eleicoes')
+        axios.get('/api/eleicoes')
             .then(function ({data}) {
                 console.log(data);
                 setEleicoes(data);
@@ -59,7 +59,7 @@ const Eleicoes: React.FC = () => {
 
     const remover = (id: string) => {
         message.loading({content: 'Aguarde...', key: 'msg'});
-        axios.delete('/eleicoes/' + id)
+        axios.delete('/api/eleicoes/' + id)
             .then(function ({data}) {
                 message.success({content: 'Removido!', key: 'msg', duration: 2});
                 getEleicoes();

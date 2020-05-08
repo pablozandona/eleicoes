@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/eleitores")
+@RequestMapping(value = "/api/eleitores")
 public class EleitorResource {
 
     @Autowired
