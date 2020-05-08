@@ -4,9 +4,6 @@ import {
     Switch,
     Route,
     Link,
-    useRouteMatch,
-    useParams,
-    Redirect
 } from "react-router-dom";
 import Eleicoes from "./pages/cadastros/eleicao/Eleicoes";
 import Cargo from "./pages/cadastros/cargo/Cargo";
@@ -21,7 +18,7 @@ import SelecionarEleicao from "./pages/votar/SelecionarEleicao";
 import Relatorios from "./pages/relatorios/Relatorios";
 import Relatorio from "./pages/relatorios/Relatorio";
 
-const {Header, Content, Footer, Sider} = Layout;
+const {Sider} = Layout;
 const {SubMenu} = Menu;
 
 const App: React.FC = () => {
