@@ -37,8 +37,8 @@ dependencies {
 }
 
 test {
-	outputs.dir snippetsDir
-	useJUnitPlatform()
+//	outputs.dir snippetsDir
+//	useJUnitPlatform()
 }
 
 asciidoctor {
