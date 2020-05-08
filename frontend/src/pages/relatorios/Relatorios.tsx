@@ -1,12 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import moment from 'moment';
 import {Button, Empty, message, Popconfirm, Row, Table, Tag} from 'antd';
-import {PlusOutlined, QuestionCircleOutlined, DeleteOutlined} from '@ant-design/icons';
 import {useHistory} from "react-router-dom";
 import axios from "axios";
 import {ContentPage} from "../../shared/components/ContentPage/ContentPage";
 import {Loading} from "../../shared/components/Loading/Loading";
-import {switchCase} from "@babel/types";
 
 const Relatorios: React.FC = () => {
 
